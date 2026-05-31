@@ -279,7 +279,6 @@ a {
 
 .split-section,
 .app-band,
-.map-section,
 .contact-band,
 .addresses-block {
   padding: 58px 0;
@@ -287,7 +286,6 @@ a {
 
 .split-section,
 .app-band,
-.map-section,
 .contact-band {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
@@ -297,7 +295,6 @@ a {
 
 .split-section h2,
 .app-copy h2,
-.map-section h2,
 .section-head h2 {
   margin: 0;
   color: var(--green-950);
@@ -309,7 +306,6 @@ a {
 
 .split-section p,
 .app-copy p,
-.map-section p,
 .policy p {
   color: var(--muted);
   font-size: 16px;
@@ -473,44 +469,6 @@ a {
   font-weight: 700;
   text-align: right;
   overflow-wrap: anywhere;
-}
-
-.map-section {
-  align-items: stretch;
-  padding-top: 48px;
-}
-
-.map-frame {
-  width: 100%;
-  height: 560px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #e5eadf;
-  box-shadow: var(--shadow);
-}
-
-.map-frame iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.map-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.map-legend a {
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--green-850);
-  padding: 7px 10px;
-  font-size: 13px;
-  font-weight: 700;
 }
 
 .vacancy-list {
@@ -729,7 +687,6 @@ a {
   .hero,
   .split-section,
   .app-band,
-  .map-section,
   .contact-band {
     grid-template-columns: 1fr;
   }
@@ -747,9 +704,6 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .map-frame {
-    height: 500px;
-  }
 }
 
 @media (max-width: 720px) {
@@ -840,7 +794,6 @@ a {
 
   .split-section,
   .app-band,
-  .map-section,
   .contact-band,
   .addresses-block {
     padding: 40px 0;
@@ -995,7 +948,4 @@ a {
     text-align: left;
   }
 
-  .map-frame {
-    height: 420px;
-  }
 }

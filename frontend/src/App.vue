@@ -15,21 +15,6 @@ const lang = ref('ru')
 const selectedCity = ref('Уральск')
 const showAllStores = ref(false)
 const expandedVacancy = ref(null)
-const mapConfigs = {
-  Уральск: {
-    src: 'https://www.openstreetmap.org/export/embed.html?bbox=51.325%2C51.178%2C51.426%2C51.255&layer=mapnik',
-    bounds: { north: 51.255, south: 51.178, west: 51.325, east: 51.426 }
-  },
-  Аксай: {
-    src: 'https://www.openstreetmap.org/export/embed.html?bbox=52.985%2C51.162%2C53.012%2C51.181&layer=mapnik',
-    bounds: { north: 51.181, south: 51.162, west: 52.985, east: 53.012 }
-  },
-  Атырау: {
-    src: 'https://www.openstreetmap.org/export/embed.html?bbox=51.84%2C47.07%2C52.02%2C47.15&layer=mapnik',
-    bounds: { north: 47.15, south: 47.07, west: 51.84, east: 52.02 }
-  }
-}
-
 function normalizeRoute(hash) {
   const value = hash.replace('#', '') || '/'
   return navItems.some((item) => item.path === value) ? value : '/'
@@ -60,10 +45,6 @@ onMounted(() => {
 const currentStores = computed(() => stores.filter((store) => store.city === selectedCity.value))
 const displayedStores = computed(() => (showAllStores.value ? currentStores.value : currentStores.value.slice(0, 6)))
 const hasHiddenStores = computed(() => currentStores.value.length > 6)
-const mappedStores = computed(() =>
-  stores.filter((store) => store.city === selectedCity.value && store.coords)
-)
-const selectedMap = computed(() => mapConfigs[selectedCity.value] ?? mapConfigs['Уральск'])
 const t = computed(() => translations[lang.value])
 
 function selectCity(city) {
@@ -113,10 +94,6 @@ const translations = {
     open2gis: 'Открыть в 2ГИС',
     showAll: 'Показать все',
     showLess: 'Свернуть',
-    mapKicker: 'Карта',
-    mapTitle: 'Магазины на карте',
-    mapText:
-      'Бесплатная OpenStreetMap без API-ключа. Зеленые точки показывают магазины выбранного города, а в карточках есть прямые ссылки на 2ГИС.',
     careerKicker: 'Карьера',
     careerTitle: 'Карьера в Пешеходе',
     careerLead: 'Откликайтесь на открытые позиции или отправляйте резюме в кадровый резерв.',
@@ -213,10 +190,6 @@ const translations = {
     open2gis: '2ГИС-те ашу',
     showAll: 'Барлығын көрсету',
     showLess: 'Жасыру',
-    mapKicker: 'Карта',
-    mapTitle: 'Дүкендер картада',
-    mapText:
-      'API-кілтсіз тегін OpenStreetMap қолданылады. Жасыл нүктелер таңдалған қаладағы дүкендерді көрсетеді, ал карточкаларда 2ГИС сілтемелері бар.',
     careerKicker: 'Мансап',
     careerTitle: 'Пешеходтағы мансап',
     careerLead: 'Ашық вакансияларға өтініш беріңіз немесе түйіндемеңізді кадрлық резервке жіберіңіз.',
@@ -409,27 +382,6 @@ const translations = {
             {{ showAllStores ? t.showLess : t.showAll }}
           </button>
 
-          <section class="map-section">
-            <div>
-              <p class="section-kicker">{{ t.mapKicker }}</p>
-              <h2>{{ t.mapTitle }}</h2>
-              <p>{{ t.mapText }}</p>
-            </div>
-            <div class="map-frame">
-              <iframe title="Карта магазинов Пешеход" :src="selectedMap.src" loading="lazy"></iframe>
-            </div>
-            <div v-if="mappedStores.length" class="map-legend">
-              <a
-                v-for="store in mappedStores"
-                :key="store.address"
-                :href="store.mapUrl"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {{ store.name }}
-              </a>
-            </div>
-          </section>
         </section>
       </section>
 
