@@ -102,7 +102,6 @@ const translations = {
     collapseVacancy: 'Свернуть',
     supportKicker: 'Поддержка',
     supportTitle: 'Поможем с вопросами по магазинам, заказам и приложению',
-    supportLead: 'Выберите направление обращения, чтобы быстрее получить ответ от нужной команды.',
     supportCards: [
       {
         title: 'Магазины, товары и заказы',
@@ -198,7 +197,6 @@ const translations = {
     collapseVacancy: 'Жасыру',
     supportKicker: 'Қолдау',
     supportTitle: 'Дүкендер, тапсырыстар және қосымша бойынша көмектесеміз',
-    supportLead: 'Қажетті командадан жылдам жауап алу үшін өтініш бағытын таңдаңыз.',
     supportCards: [
       {
         title: 'Дүкендер, тауарлар және тапсырыстар',
@@ -421,7 +419,6 @@ const translations = {
         <div class="page-title">
           <p class="eyebrow">{{ t.supportKicker }}</p>
           <h1>{{ t.supportTitle }}</h1>
-          <p class="lead">{{ t.supportLead }}</p>
         </div>
 
         <div class="support-grid">
