@@ -478,16 +478,11 @@ a {
 .map-section {
   align-items: stretch;
   padding-top: 48px;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
 }
 
 .map-frame {
-  position: relative;
-  width: 860px;
+  width: 100%;
   height: 560px;
-  max-width: none;
-  flex: 0 0 auto;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -501,46 +496,21 @@ a {
   border: 0;
 }
 
-.map-pin {
-  position: absolute;
-  display: grid;
-  width: 16px;
-  height: 16px;
-  place-items: center;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  background: var(--green-850);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transform: translate(-50%, -50%);
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-.map-pin span {
-  position: absolute;
-  bottom: calc(100% + 6px);
-  left: 50%;
-  max-width: 160px;
-  border-radius: 4px;
+.map-legend a {
+  border: 1px solid var(--line);
+  border-radius: 999px;
   background: #fff;
-  color: var(--green-950);
-  padding: 4px 7px;
-  font-size: 11px;
+  color: var(--green-850);
+  padding: 7px 10px;
+  font-size: 13px;
   font-weight: 700;
-  line-height: 1.15;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
-
-.map-pin:hover,
-.map-pin:focus-visible {
-  z-index: 3;
-  background: var(--gold);
-}
-
-.map-pin:hover span,
-.map-pin:focus-visible span {
-  opacity: 1;
 }
 
 .vacancy-list {
@@ -677,6 +647,10 @@ a {
   font-size: 20px;
 }
 
+.policy p + p {
+  margin-top: 10px;
+}
+
 .policy h2:first-child {
   margin-top: 0;
 }
@@ -774,7 +748,6 @@ a {
   }
 
   .map-frame {
-    width: 760px;
     height: 500px;
   }
 }
@@ -1022,17 +995,7 @@ a {
     text-align: left;
   }
 
-  .map-section {
-    margin-right: -9px;
-    padding-bottom: 12px;
-  }
-
   .map-frame {
-    width: 620px;
     height: 420px;
-  }
-
-  .map-pin span {
-    display: none;
   }
 }
