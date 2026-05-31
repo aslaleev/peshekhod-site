@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { cities, stores } from './data/stores'
 import { company } from './data/company'
+import vacanciesData from './data/vacancies.json'
 
 const navItems = [
   { path: '/', key: 'homeNav' },
@@ -46,6 +47,7 @@ const currentStores = computed(() => stores.filter((store) => store.city === sel
 const displayedStores = computed(() => (showAllStores.value ? currentStores.value : currentStores.value.slice(0, 6)))
 const hasHiddenStores = computed(() => currentStores.value.length > 6)
 const t = computed(() => translations[lang.value])
+const vacancies = computed(() => vacanciesData.items ?? [])
 
 function selectCity(city) {
   selectedCity.value = city
@@ -97,7 +99,6 @@ const translations = {
     careerKicker: 'Карьера',
     careerTitle: 'Карьера в Пешеходе',
     careerLead: 'Откликайтесь на открытые позиции или отправляйте резюме в кадровый резерв.',
-    resumeText: 'Резюме можно отправить на почту',
     salaryLabel: 'Доход',
     experienceLabel: 'Опыт',
     addressLabel: 'Адрес',
@@ -254,7 +255,6 @@ const translations = {
     careerKicker: 'Мансап',
     careerTitle: 'Пешеходтағы мансап',
     careerLead: 'Ашық вакансияларға өтініш беріңіз немесе түйіндемеңізді кадрлық резервке жіберіңіз.',
-    resumeText: 'Түйіндемені мына поштаға жіберуге болады',
     salaryLabel: 'Табыс',
     experienceLabel: 'Тәжірибе',
     addressLabel: 'Мекенжай',
@@ -515,7 +515,7 @@ const translations = {
         </div>
 
         <div class="vacancy-list">
-          <article v-for="vacancy in t.vacancies" :key="vacancy.title" class="vacancy-card">
+          <article v-for="vacancy in vacancies" :key="vacancy.id" class="vacancy-card">
             <div>
               <span>{{ vacancy.city }}</span>
               <h2>{{ vacancy.title }}</h2>
@@ -534,7 +534,7 @@ const translations = {
                   <dd>{{ vacancy.address }}</dd>
                 </div>
               </dl>
-              <div v-if="expandedVacancy === vacancy.title" class="vacancy-details">
+              <div v-if="expandedVacancy === vacancy.id" class="vacancy-details">
                 <p v-for="detail in vacancy.details" :key="detail">
                   {{ detail }}
                 </p>
@@ -545,17 +545,13 @@ const translations = {
             </div>
             <div class="vacancy-actions">
               <strong>{{ vacancy.schedule }}</strong>
-              <button type="button" @click="toggleVacancy(vacancy.title)">
-                {{ expandedVacancy === vacancy.title ? t.collapseVacancy : t.expandVacancy }}
+              <button type="button" @click="toggleVacancy(vacancy.id)">
+                {{ expandedVacancy === vacancy.id ? t.collapseVacancy : t.expandVacancy }}
               </button>
             </div>
           </article>
         </div>
 
-        <section class="contact-band">
-          <p>{{ t.resumeText }}</p>
-          <a :href="`mailto:${company.careerEmail}`">{{ company.careerEmail }}</a>
-        </section>
       </section>
 
       <section v-else-if="route === '/support'" class="page support-page">
